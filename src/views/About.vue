@@ -2,7 +2,6 @@
   <div class="about">
     <h1>This is an about page</h1>
   </div>
-  
 
   <div class="Slider_Holder">
     <div class="Slider_Wrapper">
@@ -22,17 +21,14 @@
   <div>
     <h1>This is an about page</h1>
   </div>
-  <AICarousel/>
+  <AICarousel />
 </template>
 
-
 <script>
-// import AICarousel from "@/components/Carousel/AI_Carousel.vue";
-import AICarousel from "@/components/Carousel/aiCarousel.vue";
+import AICarousel from "@/components/Carousel/AI_Carousel.vue";
 export default {
-  components:{
+  components: {
     AICarousel,
-  }
-
-}
+  },
+};
 </script>

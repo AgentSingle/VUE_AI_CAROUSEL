@@ -50,9 +50,9 @@ body {
   }
 }
 /* TO STOP ROTATION SCREEN IN MOBILE DEVICE */
-@media only screen and  (min-width: 320px) and (max-width: 812px) and (orientation: landscape) {
+@media only screen and (min-width: 320px) and (max-width: 812px) and (orientation: landscape) {
   body {
-    width:100vh;
+    width: 100vh;
 
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -61,5 +61,4 @@ body {
     transform: rotate(-90deg);
   }
 }
-
 </style>
