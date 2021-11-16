@@ -1,18 +1,14 @@
 <template>
   <div class="home">
-    <AICarousel />
+    <AICarousel/>
 
     <div class="Slider_Holder">
       <div class="Slider_Wrapper">
         <div class="content_Wrapper_Holder">
           <div class="Content_Wrapper">
-            <div class="card">1</div>
-            <div class="card">2</div>
-            <div class="card">3</div>
-            <div class="card">4</div>
-            <div class="card">5</div>
-            <!-- <div class="card">6</div>
-          <div class="card">7</div> -->
+            <!-- CONTENT -->
+            <div v-for="obj in objIs" v-bind:key="obj" class="card">{{obj}}</div>
+
           </div>
         </div>
       </div>
@@ -22,39 +18,26 @@
       <div class="Slider_Wrapper">
         <div class="content_Wrapper_Holder">
           <div class="Content_Wrapper">
-            <div class="card_Two">1</div>
-            <div class="card_Two">2</div>
-            <!-- <div class="card_Two">3</div> -->
-            <!-- <div class="card">4</div>
-            <div class="card">5</div>
-            <div class="card">6</div>
-            <div class="card">7</div> -->
+            <!-- CONTENT -->
+            <div v-for="obj in cardsTwo" v-bind:key="obj" class="card_Two">{{obj}}</div>
+
           </div>
         </div>
       </div>
     </div>
 
-    <div>
-      <button v-on:click="DisplayNextCarouse">click me</button>
-    </div>
+    <div class="Slider_Holder">
+      <div class="Slider_Wrapper">
+        <div class="content_Wrapper_Holder">
+          <div class="Content_Wrapper">
+            <!-- CONTENT -->
+            <div v-for="obj in objIs" v-bind:key="obj" class="card_Three">{{obj}}</div>
 
-    <div v-if="display == true">
-      <div class="Slider_Holder">
-        <div class="Slider_Wrapper">
-          <div class="content_Wrapper_Holder">
-            <div class="Content_Wrapper">
-              <div class="card">1</div>
-              <div class="card">2</div>
-              <div class="card">3</div>
-              <div class="card">4</div>
-              <div class="card">5</div>
-              <div class="card">6</div>
-              <div class="card">7</div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -68,18 +51,10 @@ export default {
   },
   data() {
     return {
-      display: false,
+      carouselMethod: '',
+      objIs: ['1', '2', '3', '4', '5'],
+      cardsTwo: ['1', '2', '3', '4', '5']
     };
-  },
-  methods: {
-    DisplayNextCarouse() {
-      if (this.display == true) {
-        this.display = false;
-      } else {
-        this.display = true;
-      }
-      console.warn("display");
-    },
   },
 };
 </script>
@@ -88,27 +63,52 @@ export default {
 .WidthIs {
   max-width: 400px;
 }
-.card_Two {
-  width: 25rem;
-  height: 15rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: bold;
-  background-color: #004149;
-  margin-left: 5px;
-  margin-right: 5px;
-  position: relative;
-  z-index: 1;
-  border-radius: 5%;
-  color: #fff;
+.card_Two{
+    min-width: 10rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #ffdcf1;
+    color: #330000;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    z-index: 1;
+    border-radius: 20rem;
+    border: 2px solid #8f0000;
+    box-sizing: border-box;
 }
 
-.card_Two:first-child {
-  margin-left: 0;
+.card_Two:first-child{
+    margin-left: 0;
 }
-.card_Two:last-child {
-  margin-right: 0;
+.card_Two:last-child{
+    margin-right: 0;
+}
+
+.card_Three{
+    width: 30rem;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #ffdfdfb0;
+    color: orangered;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    z-index: 1;
+    border-radius: 5%;
+}
+.card_Three:first-child{
+    margin-left: 0;
+}
+.card_Three:last-child{
+    margin-right: 0;
 }
 </style>

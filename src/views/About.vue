@@ -7,13 +7,7 @@
     <div class="Slider_Wrapper">
       <div class="content_Wrapper_Holder">
         <div class="Content_Wrapper">
-          <div class="card">1</div>
-          <div class="card">2</div>
-          <div class="card">3</div>
-          <div class="card">4</div>
-          <div class="card">5</div>
-          <div class="card">6</div>
-          <div class="card">7</div>
+          <div v-for="obj in objIs" v-bind:key="obj" class="card">{{obj}}</div>
         </div>
       </div>
     </div>
@@ -30,5 +24,10 @@ export default {
   components: {
     AICarousel,
   },
+  data(){
+    return{
+      objIs: ['1', '2', '3', '4', '5']
+    }
+  }
 };
 </script>
