@@ -1,4 +1,4 @@
-# AICAROUSEL
+# VUE-AICAROUSEL
 
 ## Project setup
 ```
