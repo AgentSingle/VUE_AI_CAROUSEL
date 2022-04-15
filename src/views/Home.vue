@@ -1,42 +1,33 @@
 <template>
   <div class="home">
-    <AICarousel/>
-
-    <div class="Slider_Holder">
-      <div class="Slider_Wrapper">
-        <div class="content_Wrapper_Holder">
-          <div class="Content_Wrapper">
-            <!-- CONTENT -->
-            <div v-for="obj in objIs" v-bind:key="obj" class="card">{{obj}}</div>
-
-          </div>
-        </div>
-      </div>
+    <div style="font-size: 20px; font-weight: bold;">
+      AUTHOR: "SUDIPTA MANDAL" <br><br>
     </div>
-
-    <div class="Slider_Holder">
-      <div class="Slider_Wrapper">
-        <div class="content_Wrapper_Holder">
-          <div class="Content_Wrapper">
-            <!-- CONTENT -->
-            <div v-for="obj in cardsTwo" v-bind:key="obj" class="card_Two">{{obj}}</div>
-
-          </div>
-        </div>
-      </div>
+    <div style="font-size: 18px">
+      <u>EXAMPLE OF CARDS WITH DIFFERENTS<br> STYLE AND SIZE</u>
     </div>
+    <AICarousel :Property="{ID: 'First'}">
+      <div v-for="obj in objIs" v-bind:key="obj" class="card">{{obj}}</div>
+    </AICarousel>
 
-    <div class="Slider_Holder">
+    
+    <AICarousel :Property="{ID: 'Second'}">
+      <div v-for="obj in cardsTwo" v-bind:key="obj" class="card_Two">{{obj}}</div>
+    </AICarousel>
+
+    <AICarousel :Property="{ID: 'Thirds'}">
+        <div v-for="obj in objIs" v-bind:key="obj" class="card_Three">{{obj}}</div>
+    </AICarousel>
+
+    <!-- <div class="Slider_Holder">
       <div class="Slider_Wrapper">
         <div class="content_Wrapper_Holder">
           <div class="Content_Wrapper">
-            <!-- CONTENT -->
             <div v-for="obj in objIs" v-bind:key="obj" class="card_Three">{{obj}}</div>
-
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>

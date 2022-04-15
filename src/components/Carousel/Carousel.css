@@ -1,45 +1,46 @@
-.Slider_Holder{
+/* SLIDER HOLDER */
+.iP3kL1jB2xC1eH5oU3eD9bZ1h{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-.CarouselHide{
-    display: none;
-}
-.Slider_Wrapper{
+
+/* SLIDER WRAPPER 
+[IT WRAP THE CONTENT ACCORDING TO REQUIREMENT ]*/
+.hH6bF5bC7dM2dF4iB1eJ1eD4k{
     height: auto;
     width: 100%;
-    /* width: 100px; */
-    /* background-color: cyan; */
-    color: #009b5a;
     display: grid;
     grid-template-columns: auto;
     overflow: hidden;
     position: relative;
     cursor: pointer;
 }
-.content_Wrapper_Holder{
+
+/* CONTENT WRAPPER HOLDER */
+.vR2lC1dN2bD1xN1vB3rD1hF1d{
     width: auto;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: yellow; */
+    background-color: transparent;
 }
-.Content_Wrapper{
+/* CONTENT WRAPPER */
+.lC3oC2kE3bD2fB1jC2qB4eF1v{
     width: auto;
     min-height: 1.5rem;
     display: flex;
     overflow: hidden;
     padding: 0;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    /* white-space: nowrap; */
     background-color: transparent;
     transition: all 0.5s ease-in-out 0.5s;
 }
-.card{
+/* BSIC STYLING OF CONTENT WE CAN OVERRIGHT IT */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div{
     width: 20rem;
     height: 15rem;
     display: flex;
@@ -47,23 +48,24 @@
     justify-content: center;
     font-size: 40px;
     font-weight: bold;
+    color: #009b5a;
     background-color: #d3faff;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 0 5px;
     position: relative;
     z-index: 1;
     border-radius: 5%;
+    margin: 5px;
 }
-
-
-.card:first-child{
+/* FIRST CONTENT  */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div:first-child{
     margin-left: 0;
 }
-.card:last-child{
+/* LAST CONTENT */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div:last-child{
     margin-right: 0;
 }
-/* LEFT RIGHT NEVIGATION BUTTONS */
 
+/* LEFT RIGHT NEVIGATION BUTTONS */
 .PeVNCommon{
     position: absolute;
     top: 45%;
@@ -96,8 +98,9 @@
     background-color: transparent;
     color: #fff;
     height: 1.25rem;
-    margin-top: -0.25rem;
+    margin-top: -2rem;
     cursor: pointer;
+    padding-bottom: 0.5rem;
 }
 
 .Slider_Button{

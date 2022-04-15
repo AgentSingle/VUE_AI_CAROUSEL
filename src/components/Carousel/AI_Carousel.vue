@@ -1,316 +1,397 @@
 <template>
-  <div class="Carousel_None"></div>
+
+<!-- SLIDER HOLDER -->
+    <div class="iP3kL1jB2xC1eH5oU3eD9bZ1h ATAOTASHolder">
+<!-- SLIDER WRAPPER -->
+        <div v-bind:id="Property.ID" 
+        class="hH6bF5bC7dM2dF4iB1eJ1eD4k">
+<!-- CONTENT WRAPPER HOLDER -->
+            <div class="vR2lC1dN2bD1xN1vB3rD1hF1d">
+<!-- CONTENT WRAPPER -->
+                <div class="lC3oC2kE3bD2fB1jC2qB4eF1v">
+                    <slot>
+<!-- 
+    [ WHEN YOU TRY TO USE AI-CAROUSEL, USE BELOW CODE IN YOUR TEMPLATE SECTION ]
+
+    <NewAIcarousel Selector="NAME-WHAT-YOU-WANT [BUT EACH NAME ARE DIFFERENTS]">
+        <div v-for="data in Datas" v-bind:key="data.id" class="ANYTHING">{{data}}</div>
+    </NewAIcarousel> 
+
+    [ OR ]
+
+    <NewAIcarousel Selector="NAME-WHAT-YOU-WANT [BUT EACH NAME ARE DIFFERENTS]">
+        <div class="ANYTHING">1</div>
+        <div class="ANYTHING">2</div>
+        <div class="ANYTHING">3</div>
+        .....
+    </NewAIcarousel> 
+-->
+                    </slot>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "AICarousel",
-  data() {
-    return {
-      SWrapper: null || document.getElementsByClassName("Slider_Wrapper"),
-      intervalTime: 4000,
-      cw: [],
-    };
-  },
-  mounted() {
-    // // FIRST CHECK IS THERE ANY CAROUSEL PRESENT OR NOT
-    if (this.SWrapper.length != 0) {
-      this.SWrapper.forEach((element) => {
-        let ParentElm = element.parentElement;
-        let CMD = -1;
-        let InterValId = "";
-        let timeOutFunctionId = "";
-        let CSL_Moving = "Moving";
-        let sectionIndex = 2;
-
-        let CWHolder = element.firstElementChild;
-        let CW = CWHolder.firstElementChild;
-        let CNT = CW.firstElementChild;
-
-        element.addEventListener("mouseenter", () => {
-          CSL_Moving = "";
-        });
-        element.addEventListener("mouseleave", () => {
-          CSL_Moving = "Moving";
-        });
-
-        CW.addEventListener("transitionend", () => {
-          if (CMD == -1) {
-            CW.appendChild(CW.firstElementChild);
-          } else if (CMD == 1) {
-            CW.prepend(CW.lastElementChild);
-          }
-          CW.style.transition = "none";
-          CW.style.transform = `translatex(${0}px)`;
-          setTimeout(() => {
-            CW.style.transition = "all 0.5s ease-in-out 0.5s";
-            sectionIndex = Number(CW.children[1].classList[0]);
-          });
-
-          let counterParentElm = ParentElm.children[1];
-          if (counterParentElm != undefined) {
-            let counterNext;
-            let counterPrevious;
-            if (CMD == -1) {
-              let el = CW.children[0].classList[0];
-              counterNext = counterParentElm.children[el];
-              counterPrevious = counterParentElm.children[el - 1];
-            }
-            if (CMD == 1) {
-              let el = CW.children[1].classList[0];
-              counterNext = counterParentElm.children[el - 1];
-              counterPrevious = counterParentElm.children[el];
-            }
-            if (counterNext != undefined) {
-              counterNext.classList.add("Slider_Button_Active");
-            }
-            if (counterPrevious != undefined) {
-              counterPrevious.classList.remove("Slider_Button_Active");
-            }
-
-            if ((counterNext == undefined) & (CMD == -1)) {
-              counterParentElm.lastElementChild.classList.remove(
-                "Slider_Button_Active"
-              );
-              counterParentElm.firstElementChild.classList.add(
-                "Slider_Button_Active"
-              );
-            }
-            if ((counterPrevious == undefined) & (CMD == 1)) {
-              counterParentElm.lastElementChild.classList.add(
-                "Slider_Button_Active"
-              );
-              counterParentElm.firstElementChild.classList.remove(
-                "Slider_Button_Active"
-              );
-            }
-          }
-        });
-
-        const adjustCSL = () => {
-          let screenWidth = element.clientWidth;
-          let CWwidth = CW.clientWidth;
-          let CNTWidth = CNT.clientWidth;
-          let totalCNT = CW.children.length;
-          let IsTuchDown = false;
-          let startX;
-
-          // GAP BETWEEN TWO CARDS
-          let gap_between_CNT =
-            (CWwidth - CNTWidth * totalCNT) / (totalCNT - 1);
-
-          // NUMBER OF CARDS DISPLAY ON THE SCREEN
-          let CNTdisplaing = Math.ceil(
-            screenWidth / (CNTWidth + gap_between_CNT / 2)
-          );
-
-          let xMove =
-            (CNTdisplaing * CNTWidth +
-              gap_between_CNT * (CNTdisplaing - 1) -
-              screenWidth) /
-            2;
-          let move = CNTWidth + gap_between_CNT;
-
-          // DETECTING TOUCH
-          element.addEventListener(
-            "touchstart",
-            (e) => {
-              IsTuchDown = true;
-              CSL_Moving = "";
-              let touch = e.touches[0];
-              startX = touch.pageX - element.offsetLeft;
-            },
-            { passive: true }
-          );
-
-          element.addEventListener(
-            "touchend",
-            () => {
-              IsTuchDown = false;
-              CSL_Moving = "Moving";
-            },
-            { passive: true }
-          );
-
-          element.addEventListener(
-            "touchmove",
-            (e) => {
-              CSL_Moving = "";
-              if (!IsTuchDown) return;
-              let touch = e.touches[0];
-              const x = touch.pageX - element.offsetLeft;
-              const slidMove = x - startX;
-              if (CWwidth > screenWidth) {
-                if (slidMove < 0) {
-                  CWHolder.style.justifyContent = "flex-start";
-                  CW.style.transform = `translatex(${-move}px)`;
-                  CMD = -1;
-                }
-                if (slidMove > 0) {
-                  CWHolder.style.justifyContent = "flex-end";
-                  CW.style.transform = `translatex(${move}px)`;
-                  CMD = 1;
-                }
-              }
-              setTimeout(() => {
-                CSL_Moving = "Moving";
-              }, this.intervalTime);
-            },
-            { passive: true }
-          );
-
-          // First-time Move Carousel
-          const moveCSLfirst = () => {
-            move = CNTWidth + gap_between_CNT
-            if ((CSL_Moving == "Moving") & (CMD == -1)) {
-              CW.style.transform = `translatex(${-move}px)`;
-            } else if ((CSL_Moving == "Moving") & (CMD == 1)) {
-              CW.style.transform = `translatex(${move}px)`;
-            }
-          };
-
-          // ADDING LEFT RIGHT NAVIGATION BUTTON
-          const addNevigationButton = () => {
-            let NevigationButton = document.createElement("div");
-            NevigationButton.className = "NavigationButtons";
-
-            let NVbtnPrevious = document.createElement("div");
-            NVbtnPrevious.className = "Previous PeVNCommon";
-            NVbtnPrevious.innerHTML = "&lsaquo;";
-
-            let NVbtnNext = document.createElement("div");
-            NVbtnNext.className = "Next PeVNCommon";
-            NVbtnNext.innerHTML = "&rsaquo;";
-
-            NevigationButton.prepend(NVbtnPrevious);
-            NevigationButton.appendChild(NVbtnNext);
-            element.appendChild(NVbtnPrevious);
-            element.appendChild(NVbtnNext);
-
-            NVbtnPrevious.addEventListener("click", () => {
-              if (CMD == -1) {
-                CMD = 1;
-              }
-              CWHolder.style.justifyContent = "flex-start";
-              CW.style.transform = `translatex(${move}px)`;
-            });
-            NVbtnNext.addEventListener("click", () => {
-              CMD = -1;
-              CWHolder.style.justifyContent = "flex-end";
-              CW.style.transform = `translatex(${-move}px)`;
-            });
-          };
-
-          // ADDING TOGGLER NAVIGATION BUTTON
-          const createMultiNavBtn = () => {
-            let counter_click = document.createElement("div");
-            counter_click.className = `counter_click`;
-            if (ParentElm.children.length == 1) {
-              for (let i = 0; i < totalCNT; i++) {
-                let CarouselClass = CW.children[i].classList[0];
-                if (isNaN(CarouselClass) == true) {
-                  CW.children[i].className = `${i + 1} ${CarouselClass}`;
-                }
-
-                let new_div = document.createElement("div");
-                new_div.innerText = i + 1;
-                new_div.className = `Slider_Button`;
-                counter_click.appendChild(new_div);
-
-                const TranslateCards = () => {
-                  if (i + 1 - sectionIndex > 0) {
-                    CMD = -1;
-                    for (let Cno = 0; Cno < i + 1 - sectionIndex; Cno++) {
-                      CW.appendChild(CW.children[0]);
-                    }
-                    sectionIndex = i + 1;
-                  }
-                  if (i + 1 - sectionIndex < 0) {
-                    CMD = 1;
-                    for (let Cno = 0; Cno < sectionIndex - (i + 1); Cno++) {
-                      CW.prepend(CW.children[totalCNT - 1]);
-                    }
-                    sectionIndex = i + 1;
-                  }
-                  if (i + 1 - sectionIndex == 0) {
-                    return false;
-                  }
-                };
-
-                new_div.addEventListener("click", () => {
-                  CSL_Moving = "";
-                  counter_click.children[sectionIndex - 1].classList.remove(
-                    "Slider_Button_Active"
-                  );
-                  new_div.classList.add("Slider_Button_Active");
-                  TranslateCards();
-                  setTimeout(() => {
-                    CSL_Moving = "Moving";
-                  }, this.intervalTime);
-                });
-              }
-              if (totalCNT > 2) {
-                ParentElm.appendChild(counter_click);
-              }
-            }
-          };
-
-          // ON-RESIZE THE WINDOW RESIZE THOSE CONTENT
-          window.addEventListener("resize", () => {
-            clearTimeout(timeOutFunctionId);
-            timeOutFunctionId = "";
-            clearInterval(InterValId);
-            InterValId = "";
-            if ((CWwidth <= screenWidth) | (screenWidth<=480)) {
-              if (element.children.length > 1) {
-                element.removeChild(element.children[1]);
-                element.removeChild(element.children[1]);
-              }
-            }
-            timeOutFunctionId = setTimeout(adjustCSL, this.intervalTime);
-          });
-
-          // Positioning Carousel
-          if (CWwidth <= screenWidth) {
-            CWHolder.style.transform = `none`;
-            CW.style.transform = `none`;
-            CWHolder.style.justifyContent = "center";
-            // REMOVE LEFT & RIGHT NEVIGATION BUTTON
-            if (element.children.length > 1) {
-              element.removeChild(element.children[1]);
-              element.removeChild(element.children[1]);
-            }
-            // REMOVE TOGGLER NAVIGATION BUTTONS
-            if ((totalCNT > 2) & (ParentElm.children[1] != undefined)) {
-              ParentElm.removeChild(ParentElm.children[1]);
-            }
-          }
-          if (CWwidth > screenWidth) {
-            CWHolder.style.transform = `translatex(${-xMove}px)`;
-            clearInterval(InterValId);
-            InterValId = "";
-            if (!InterValId)
-              InterValId = setInterval(moveCSLfirst, this.intervalTime);
-            addNevigationButton();
-            createMultiNavBtn();
-          }
-          if (screenWidth<=480) {
-            // REMOVE LEFT & RIGHT NEVIGATION BUTTON
-            if (element.children.length > 1) {
-              element.removeChild(element.children[1]);
-              element.removeChild(element.children[1]);
-            }
-          }
-          if ((CNTdisplaing == 2) & (totalCNT >= 2)) {
-            move = (CNTWidth-((screenWidth-CNTWidth)/2))+gap_between_CNT
-            CWHolder.style.transform = `translatex(${-move}px)`;
-          }
+    name: 'AIcarousel',
+    data() {
+        return {
+            intervalTime: this.Property.Dlay || 5000,
+            Total_CNT: null,
+            screenWidth: null,
+            CSL_Moving: "Moving"
         };
-        adjustCSL();
-      });
-    }
-  },
-};
+    },
+    props:{
+        /* FIRST CHECK IS THERE ANY CAROUSEL PRESENT OR NOT */
+        Property: Object
+    },
+    methods:{
+
+    },
+    mounted() {
+        /* ~~~~:~~~[ SELECT WRAPPER ELEMENT ]~~~~:~~~ */
+        let SWrapper = document.getElementById(this.Property.ID)      
+        let CWHolder = SWrapper.firstElementChild;
+        let ContentWrapper = CWHolder.firstElementChild;
+        this.Total_CNT = ContentWrapper.childElementCount;
+        this.screenWidth = SWrapper.clientWidth;
+        /* GET PARENT-ELEMENT */
+        let ParentElm = SWrapper.parentElement;
+        let sectionIndex = 2; // ESSENTIAL FOR TOGGLER BUTTONS
+        let InterValId = "";
+        let CMD = -1;
+
+
+        /* ~~~~:~~~[ ACTION ACCORDING TO MOUSE POSTION ]~~~~:~~~ */
+        SWrapper.addEventListener("mouseenter", () => {
+            this.CSL_Moving = "";
+        });
+        SWrapper.addEventListener("mouseleave", () => {
+            this.CSL_Moving = "Moving";
+        });
+
+
+        /* ~~~~:~~~[ HANDLE MOVEMENT OF CAROUSEL ]~~~~:~~~
+        TRANSITION AND TRANSLETE CAROUSEL */
+        ContentWrapper.addEventListener("transitionend", () => {
+            if (CMD == -1) {
+                ContentWrapper.appendChild(ContentWrapper.firstElementChild);
+            } else if (CMD == 1) {
+                ContentWrapper.prepend(ContentWrapper.lastElementChild);
+            }
+            ContentWrapper.style.transition = "none";
+            ContentWrapper.style.transform = `translatex(${0}px)`;
+            setTimeout(() => {
+                ContentWrapper.style.transition = "all 0.5s ease-in-out 0.5s";
+
+                /* ECH AND EVERY CARDS TRANSITION WE UPDATE SECTION INDEX */
+                sectionIndex = Number(ContentWrapper.children[1].classList[0]);
+            });
+
+        /* TOGGLER BUTTON STYLE CHANGE */
+            let counterParentElm = ParentElm.children[1];
+            if (counterParentElm != undefined) {
+                let counterNext;
+                let counterPrevious;
+                if (CMD == -1) {
+                let el = ContentWrapper.children[0].classList[0];
+                counterNext = counterParentElm.children[el];
+                counterPrevious = counterParentElm.children[el - 1];
+                }
+                if (CMD == 1) {
+                let el = ContentWrapper.children[1].classList[0];
+                counterNext = counterParentElm.children[el - 1];
+                counterPrevious = counterParentElm.children[el];
+                }
+                if (counterNext != undefined) {
+                    counterNext.classList.add("Slider_Button_Active");
+                }
+                if (counterPrevious != undefined) {
+                    counterPrevious.classList.remove("Slider_Button_Active");
+                }
+
+                if ((counterNext == undefined) & (CMD == -1)) {
+                    counterParentElm.lastElementChild.classList.remove(
+                        "Slider_Button_Active"
+                    );
+                    counterParentElm.firstElementChild.classList.add(
+                        "Slider_Button_Active"
+                    );
+                }
+                if ((counterPrevious == undefined) & (CMD == 1)) {
+                    counterParentElm.lastElementChild.classList.add(
+                        "Slider_Button_Active"
+                    );
+                    counterParentElm.firstElementChild.classList.remove(
+                        "Slider_Button_Active"
+                    );
+                }
+            }
+        })
+
+
+        /* 
+        ~~~~:~~~[ ADJUSTING CONTENT CENTER, ACCORDING 
+        TO NUMBER OF CONTENT AND SCREEN WIDTH ]~~~~:~~~
+        */
+        const adjustCSL = () =>{
+            let screenWidth = this.screenWidth;
+            let CWwidth = CWHolder.clientWidth;
+            let CNTWidth = ContentWrapper.firstElementChild.clientWidth;
+            let totalCNT = this.Total_CNT;
+            let IsTuchDown = false;
+            let startX;
+
+            
+        /* ~~~~:~~~[ GAP BETWEEN ANY TWO CARDS ]~~~~:~~~ */
+            let gap_between_CNT = (CWwidth - CNTWidth * totalCNT) / (totalCNT - 1);
+
+        /* ~~~~:~~~[ TOTAL NUMBER/NUMBERS OF CARD/CARDS DISPLAY ON THE SCREEN ]~~~~:~~~ */
+            let CNTdisplaing = Math.ceil(
+                screenWidth / (CNTWidth + gap_between_CNT / 2)
+            );
+            let xMove =((CNTdisplaing * CNTWidth + gap_between_CNT * (CNTdisplaing - 1) - screenWidth) / 2);
+            let move = CNTWidth + gap_between_CNT;
+
+        /* ~~~~:~~~[ FIRST TIME MOVE CAROUSEL ]~~~~:~~~ */ 
+            const moveCSLfirst = () => {
+                move = CNTWidth + gap_between_CNT
+                if (this.CSL_Moving == "Moving") {
+                    ContentWrapper.style.transform = `translatex(${-move}px)`;
+                }
+            };
+            const callMoveCSLfirst = () =>{
+                clearInterval(InterValId);
+                InterValId = "";
+                if (!InterValId){
+                    InterValId = setInterval(moveCSLfirst, this.intervalTime);
+                    addNevigationButton();
+                }
+            }
+
+
+        /* 
+        ~~~~:~~~[ CREATING LEFT & RIGHT MOVEMENT BUTTON ]~~~~:~~~
+        [ WHEN CLICK RIGHT SIDE BUTTON CONTENT START MOVING LEFT DIRECTION ]
+        [ WHEN CLICK LEFT SIDE BUTTON CONTENT START MOVING DIRECTION ]
+        */ 
+            const addNevigationButton = () => {
+                let NevigationButton = document.createElement("div");
+                NevigationButton.className = "NavigationButtons";
+
+            /* FLEFT NAVIGATION BUTTON */ 
+                let NVbtnPrevious = document.createElement("div");
+                NVbtnPrevious.className = "Previous PeVNCommon";
+                NVbtnPrevious.innerHTML = "&lsaquo;";
+
+                NevigationButton.prepend(NVbtnPrevious);
+                SWrapper.appendChild(NVbtnPrevious);
+
+                NVbtnPrevious.addEventListener("click", () => {
+                    if (CMD == -1) {
+                        CMD = 1;
+                    }
+                    CWHolder.style.justifyContent = "flex-start";
+                    ContentWrapper.style.transform = `translatex(${move}px)`;
+                    setTimeout(() => {
+                        CMD = -1
+                    }, this.intervalTime);
+                });
+
+
+            /* RIGHT NAVIGATION BUTTON */
+                let NVbtnNext = document.createElement("div");
+                NVbtnNext.className = "Next PeVNCommon";
+                NVbtnNext.innerHTML = "&rsaquo;";
+
+                NevigationButton.appendChild(NVbtnNext);
+                SWrapper.appendChild(NVbtnNext);
+
+                NVbtnNext.addEventListener("click", () => {
+                    CMD = -1;
+                    CWHolder.style.justifyContent = "flex-end";
+                    ContentWrapper.style.transform = `translatex(${-move}px)`;
+                });
+
+            };
+        
+        /* 
+        ~~~~:~~~[ CREATING MULTY TOGGLE BUTTON ]~~~~:~~~
+        [ CREATE MULTIPLE TOGGLER BUTTON
+         ACCORDING TO THE NUMBER OF CONTENT NUMBER]
+        */
+            const createMultiNavBtn = () => {
+                let counter_click = document.createElement("div");
+                counter_click.className = `counter_click`;
+
+                if (ParentElm.children.length == 1) {
+                    /* CREATING COUNTER CLICKABLE BUTTONS */
+                    for (let i = 0; i < totalCNT; i++) {
+                        let CarouselClass = ContentWrapper.children[i].classList[0];
+                    if (isNaN(CarouselClass) == true) {
+                        ContentWrapper.children[i].className = `${i + 1} ${CarouselClass}`;
+                    }
+
+                    let new_div = document.createElement("div");
+                    new_div.innerText = i + 1;
+                    new_div.className = `Slider_Button`;
+                    counter_click.appendChild(new_div);
+
+                    const TranslateCards = () => {
+                        if (i + 1 - sectionIndex > 0) {
+                            CMD = -1;
+                            for (let Cno = 0; Cno < (i + 1 - sectionIndex); Cno++) {
+                                ContentWrapper.appendChild(ContentWrapper.children[0]);
+                            }
+                            sectionIndex = i + 1;
+                        }
+                        if (i + 1 - sectionIndex < 0) {
+                            CMD = 1;
+                            for (let Cno = 0; Cno < (sectionIndex - (i + 1)); Cno++) {
+                                ContentWrapper.prepend(ContentWrapper.children[totalCNT - 1]);
+                            }
+                            sectionIndex = i + 1;
+                        }
+                        if (i + 1 - sectionIndex == 0) {
+                            return false;
+                        }
+                    };
+                    /* WHEN CLICK NUMBER TOGGLER BUTTONS */
+                    new_div.addEventListener("click", () => {
+                        this.CSL_Moving = "";
+                        counter_click.children[sectionIndex - 1].classList.remove(
+                        "Slider_Button_Active"
+                        );
+                        new_div.classList.add("Slider_Button_Active");
+                        TranslateCards();
+                        setTimeout(() => {
+                            this.CSL_Moving = "Moving";
+                        }, this.intervalTime)
+                    });
+                    }
+                    if (totalCNT > 2) {
+                        ParentElm.appendChild(counter_click);
+                    }
+                }
+            };
+
+        /* ~~~~:~~~[ ACTION ACCORDING TO SCREEN TOUCH ]~~~~:~~~ */
+            /* WHEN TOUCH START */ 
+            SWrapper.addEventListener("touchstart", (e) => {
+                IsTuchDown = true;
+                this.CSL_Moving = "";
+                let touch = e.touches[0];
+                startX = touch.pageX - SWrapper.offsetLeft;
+            },{ passive: true });;
+
+            /* WHEN TOUCH MOVE */ 
+            SWrapper.addEventListener("touchmove", (e) => {
+                this.CSL_Moving = "";
+                if (!IsTuchDown) return;
+
+                let touch = e.touches[0];
+                const x = touch.pageX - SWrapper.offsetLeft;
+                const slidMove = x - startX;
+
+                if (CWwidth > screenWidth) {
+                    if (slidMove < - (CNTWidth/2)) {
+                        CWHolder.style.justifyContent = "flex-start";
+                        ContentWrapper.style.transform = `translatex(${-move}px)`;
+                        CMD = -1;
+                    }
+                    if (slidMove > (CNTWidth/2)) {
+                        CWHolder.style.justifyContent = "flex-end";
+                        ContentWrapper.style.transform = `translatex(${move}px)`;
+                        CMD = 1;
+                    }
+                }
+                setTimeout(() => {
+                    this.CSL_Moving = "Moving";
+                }, this.intervalTime);
+
+            },{ passive: true });
+            
+            /* WHEN TOUCH END */ 
+            SWrapper.addEventListener("touchend",() => {
+                    IsTuchDown = false;
+                    this.CSL_Moving = "Moving";
+                },
+                { passive: true }
+            )
+
+
+        /* ~~~~:~~~[ POSTIONING CAROUSEL ]~~~~:~~~ */
+
+            /* WHEN SCREEN WIDTH IS LESSTHAN CONTENT WIDTH 
+            CALL FIRST TIME CAROUSEL MOVEMENT FUNCTION*/
+            if (CWwidth > screenWidth){
+                CWHolder.style.transform = `translatex(${-xMove}px)`;
+                callMoveCSLfirst();
+                createMultiNavBtn();
+            }
+            /* WHEN SCREEN WIDTH GRATERTHAN CONTENT WIDTH REMOVE INTERVAL 
+            & CENTER ALL CONTENT */
+            if (CWwidth <= screenWidth){
+                /* REMOVE LEFT & RIGHT NEVIGATION BUTTON */
+                if (SWrapper.children.length > 1) {
+                    SWrapper.removeChild(SWrapper.children[1]);
+                    SWrapper.removeChild(SWrapper.children[1]);
+                }
+                /* REMOVE TOGGLER NAVIGATION BUTTONS */ 
+                if ((totalCNT > 2) & (ParentElm.children[1] != undefined)) {
+                    ParentElm.removeChild(ParentElm.children[1]);
+                }
+                clearInterval(InterValId);
+                CWHolder.style.transform = `none`;
+                ContentWrapper.style.transform = `none`;
+                CWHolder.style.justifyContent = "center";
+            }
+            /* CONTENT NUMBER GRATERTHAN '2' THEN WE CALL THS FUNCTION */
+            if ((CNTdisplaing == 2) & (totalCNT >= 2) & (screenWidth<= 2*CNTWidth)){
+                move = (CNTWidth-((screenWidth-CNTWidth)/2))+gap_between_CNT
+                CWHolder.style.transform = `translatex(${-move}px)`;
+                callMoveCSLfirst();
+            }
+        };
+        /* 
+        IF CONTENT NUMBER NOT ZERO THEN WE CALL CAROUSEL POSTION ADJUST FUNCTION 
+        */
+        if(this.Total_CNT != 0){
+            adjustCSL();
+        };
+
+        /* ~~~~:~~~[ AFTER 200ms CHAKE CONTENT SITUATION ]~~~~:~~~ */
+        setInterval(() => {
+            let New_Total_CNT = ContentWrapper.childElementCount
+        /* CHECK CONTENT UPDATE OR IS THERE ANY NEW CONTENT ADDED */
+            if(this.Total_CNT != New_Total_CNT){
+                this.Total_CNT = New_Total_CNT
+                if(this.Total_CNT != 0){
+                    adjustCSL();
+                };
+            }
+        /* CHECK CHECK SCREEN WITH CHANGE OR NOT */
+            let New_screenWidth = SWrapper.clientWidth;
+            if (this.screenWidth != New_screenWidth){
+                this.screenWidth = New_screenWidth
+                if(this.Total_CNT != 0){
+                    adjustCSL();
+                };
+            }
+        /* REMOVE LEFT & RIGHT NEVIGATION BUTTON FOR SMALL SCREEN */
+            if (this.screenWidth<=420) {
+                if (SWrapper.children.length > 1) {
+                    SWrapper.removeChild(SWrapper.children[1]);
+                    SWrapper.removeChild(SWrapper.children[1]);
+                }
+            }
+        }, 10);
+
+    },
+}
 </script>
 
 <style scoped>
