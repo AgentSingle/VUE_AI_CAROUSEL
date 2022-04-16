@@ -13,11 +13,8 @@ export default defineComponent({
 <template>
   <div id="app">
     <VueAIcarousel :Property="{ID: 'One'}">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
+      <div class="cards">1</div>
     </VueAIcarousel>
   </div>
 </template>
+

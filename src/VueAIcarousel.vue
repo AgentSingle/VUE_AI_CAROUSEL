@@ -1,5 +1,4 @@
 <template>
-
 <!-- SLIDER HOLDER -->
     <div class="iP3kL1jB2xC1eH5oU3eD9bZ1h ATAOTASHolder">
 <!-- SLIDER WRAPPER -->
@@ -42,6 +41,11 @@ export default {
             Total_CNT: null,
             screenWidth: null,
             CSL_Moving: "Moving",
+            NaveBtnStyle: "PeVNCommon commonStyle",
+            CounterPosition: "countPos countDefaultpos",
+            CounterStyle: "CounterBtnCommon Slider_Button",
+            Slider_Button_Active: "Slider_Button_Active",
+
         };
     },
     props:{
@@ -60,6 +64,20 @@ export default {
         let sectionIndex = 2; // ESSENTIAL FOR TOGGLER BUTTONS
         let InterValId = "";
         let CMD = -1;
+
+        // ADDING STYLE PROPERY
+        if (this.Property.NavBtn){
+            this.NaveBtnStyle = `${this.Property.NavBtn} commonStyle`;
+        }
+        if (this.Property.CountPos){
+            this.CounterPosition = `countPos ${this.Property.CountPos}`;
+        }
+        if (this.Property.CounterStyle){
+            this.CounterStyle = `CounterBtnCommon ${this.Property.CounterStyle}`;
+        }
+        if (this.Property.CounterActiveStyle){
+            this.Slider_Button_Active = `${this.Property.CounterActiveStyle}`;
+        }
 
 
         /* ~~~~:~~~[ ACTION ACCORDING TO MOUSE POSTION ]~~~~:~~~ */
@@ -105,26 +123,26 @@ export default {
                 counterPrevious = counterParentElm.children[el];
                 }
                 if (counterNext != undefined) {
-                    counterNext.classList.add("Slider_Button_Active");
+                    counterNext.classList.add(this.Slider_Button_Active);
                 }
                 if (counterPrevious != undefined) {
-                    counterPrevious.classList.remove("Slider_Button_Active");
+                    counterPrevious.classList.remove(this.Slider_Button_Active);
                 }
 
                 if ((counterNext == undefined) & (CMD == -1)) {
                     counterParentElm.lastElementChild.classList.remove(
-                        "Slider_Button_Active"
+                        this.Slider_Button_Active
                     );
                     counterParentElm.firstElementChild.classList.add(
-                        "Slider_Button_Active"
+                        this.Slider_Button_Active
                     );
                 }
                 if ((counterPrevious == undefined) & (CMD == 1)) {
                     counterParentElm.lastElementChild.classList.add(
-                        "Slider_Button_Active"
+                        this.Slider_Button_Active
                     );
                     counterParentElm.firstElementChild.classList.remove(
-                        "Slider_Button_Active"
+                        this.Slider_Button_Active
                     );
                 }
             }
@@ -180,9 +198,9 @@ export default {
                 let NevigationButton = document.createElement("div");
                 NevigationButton.className = "NavigationButtons";
 
-            /* FLEFT NAVIGATION BUTTON */ 
+            /* LEFT NAVIGATION BUTTON */ 
                 let NVbtnPrevious = document.createElement("div");
-                NVbtnPrevious.className = "Previous PeVNCommon";
+                NVbtnPrevious.className = `Previous ${this.NaveBtnStyle}`;
                 NVbtnPrevious.innerHTML = "&lsaquo;";
 
                 NevigationButton.prepend(NVbtnPrevious);
@@ -197,10 +215,9 @@ export default {
                     ContentWrapper.style.transform = `translatex(${move}px)`;
                 });
 
-
             /* RIGHT NAVIGATION BUTTON */
                 let NVbtnNext = document.createElement("div");
-                NVbtnNext.className = "Next PeVNCommon";
+                NVbtnNext.className = `Next ${this.NaveBtnStyle}`;
                 NVbtnNext.innerHTML = "&rsaquo;";
 
                 NevigationButton.appendChild(NVbtnNext);
@@ -221,7 +238,7 @@ export default {
         */
             const createMultiNavBtn = () => {
                 let counter_click = document.createElement("div");
-                counter_click.className = `counter_click`;
+                counter_click.className = `${this.CounterPosition}`;
 
                 if (ParentElm.children.length == 1) {
                     /* CREATING COUNTER CLICKABLE BUTTONS */
@@ -233,7 +250,7 @@ export default {
 
                     let new_div = document.createElement("div");
                     new_div.innerText = i + 1;
-                    new_div.className = `Slider_Button`;
+                    new_div.className = `${this.CounterStyle}`;
                     counter_click.appendChild(new_div);
 
                     const TranslateCards = () => {
@@ -259,9 +276,9 @@ export default {
                     new_div.addEventListener("click", () => {
                         this.CSL_Moving = "";
                         counter_click.children[sectionIndex - 1].classList.remove(
-                        "Slider_Button_Active"
+                        this.Slider_Button_Active
                         );
-                        new_div.classList.add("Slider_Button_Active");
+                        new_div.classList.add(this.Slider_Button_Active);
                         TranslateCards();
                         setTimeout(() => {
                             this.CSL_Moving = "Moving";
@@ -455,22 +472,23 @@ export default {
 }
 
 /* LEFT RIGHT NEVIGATION BUTTONS */
-.PeVNCommon{
+.commonStyle{
     position: absolute;
     top: 45%;
     font-size: 2.5rem;
     font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.PeVNCommon{
     color: #302f2fe8;
     height: 2rem;
     width: 2rem;
     background-color: #ffffff8a;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     text-shadow: 0 0 3px #fff, 0 0 5px #fff;
-    font-family: sans-serif;
 }
 .hH6bF5bC7dM2dF4iB1eJ1eD4k .Previous{
     left: 0;
@@ -479,37 +497,39 @@ export default {
     right: 0;
 }
 /* CIRCULAR NAVIGATION BUTTONS  */
-.counter_click{
+.countPos{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: #fff;
     height: 1.25rem;
-    margin-top: -2rem;
     cursor: pointer;
+}
+.countDefaultpos{
+    margin-top: -1.7rem;
     padding-bottom: 0.5rem;
 }
-
-.Slider_Button{
-    height: 1rem;
-    width: 1rem;
+.CounterBtnCommon{
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
+    margin: 2px;
+    box-sizing: border-box;
+    margin-top: 2.5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+.Slider_Button{
+    height: 1rem;
+    width: 1rem;
     background: #a5a5a5;
     border-radius: 50%;
-    margin: 2px;
-    position: relative;
-    box-sizing: border-box;
     font-size: 0.6rem;
     font-weight: bolder;
     color: #ffffff;
     transition: 1s;
-    margin-top: 2.5px;
-    margin-bottom: 5px;
 }
 
 .Slider_Button_Active{

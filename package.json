@@ -1,7 +1,7 @@
 {
   "name": "vue-ai-carousel",
-  "version": "1.0.5",
-  "description": "A vue3 Carousel Component",
+  "version": "1.0.6",
+  "description": "vue-3 Carousel Component",
 
   "main": "dist/VueAIcarousel.ssr.js",
   "browser": "dist/VueAIcarousel.esm.js",

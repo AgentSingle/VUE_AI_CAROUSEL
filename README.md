@@ -80,6 +80,21 @@ THEN IN YOUR COMPONENT SECTION, write: VueAIcarousel, as shown below::
       <div class="cards">3</div>
       <div class="cards">4</div>
     </VueAIcarousel>
+    
+    <VueAIcarousel 
+      :Property="{
+        ID: 'ShouldBe_Unique', 
+        NavBtn: 'naveBtnStyle',
+        CountPos: 'CounterPosition',
+        CounterStyle: 'counterNewStyle',
+        CounterActiveStyle: 'CAnewStyle',
+        }"
+    >
+      <div class="cards">1</div>
+      <div class="cards">2</div>
+      <div class="cards">3</div>
+      <div class="cards">4</div>
+    </VueAIcarousel>
 </template>
 
 <script>
@@ -102,6 +117,23 @@ export default defineComponent({
   width: 12rem;
 }
 </style>
+
+<style >
+.naveBtnStyle{
+  height: 50px;
+  width: 50px;
+  background: orange;
+}
+.CounterPosition{
+  margin-top: -30px;
+}
+.counterNewStyle{
+  background: red;
+}
+.CAnewStyle{
+  background: purple;
+}
+</style>
 ```
 <h3>☸**CHANGE DELAY TIME**☸</h3>
 
@@ -114,14 +146,21 @@ export default defineComponent({
 <h3>☸**STYLE CHANGE**☸</h3>
 
 ```
-/* TO CHANGE STYLE OF LEFT RIGHT NEVIGATION BUTTONS  (USE BELOW CLASS)*/
-.PeVNCommon{} 
-/* TO CHANGE POSTION OF COUNTER BUTTONS  (USE BELOW CLASS)*/
-.counter_click{}
-/* TO CHANGE STYLE OF COUNTER BUTTONS  (USE BELOW CLASS)*/
-.Slider_Button{}
-/* TO CHANGE STYLE OF COUNTER ACTIVE BUTTON  (USE BELOW CLASS)*/
-.Slider_Button_Active{}
+<VueAIcarousel 
+  :Property="{
+    ID: 'ShouldBe_Unique', 
+    NavBtn: 'naveBtnStyle',   <!--  TO CHANGE STYLE OF LEFT RIGHT NEVIGATION BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
+    CountPos: 'CounterPosition',  <!--  TO CHANGE POSTION OF COUNTER BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
+    CounterStyle: 'counterNewStyle', <!--  TO CHANGE POSTION OF COUNTER BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
+    CounterActiveStyle: 'CAnewStyle', <!--  TO CHANGE STYLE OF COUNTER ACTIVE BUTTON [ GIVE A UNIQUECALSS NAME ] -->
+    }"
+>
+
+[** Create a new style Section & don't use scoped **]
+<style >
+/* YOUR STYLE GOSE HERE */
+/* WE ALREADY GIVE AN EXAMPLE ON THE ABOVE */
+</style>
 ```
 
 🔆 **bundle-size** size**(6kb)**.
