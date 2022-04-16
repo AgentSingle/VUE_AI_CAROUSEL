@@ -23,4 +23,3 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## notice: [NO REQUIREMENTS: VUEX, VUE-ROUTER (FOR THIS PROJECT)]
