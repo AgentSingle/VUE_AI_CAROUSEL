@@ -12,7 +12,6 @@ export default defineComponent({
 
 <template>
   <div id="app">
-    hi there i am sudipta mandal
     <VueAIcarousel :Property="{ID: 'One'}">
       <div>1</div>
       <div>2</div>

@@ -389,6 +389,133 @@ export default {
 }
 </script>
 
-<style scoped>
-@import "./Carousel.css";
+<style>
+/* SLIDER HOLDER */
+.iP3kL1jB2xC1eH5oU3eD9bZ1h{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* SLIDER WRAPPER 
+[IT WRAP THE CONTENT ACCORDING TO REQUIREMENT ]*/
+.hH6bF5bC7dM2dF4iB1eJ1eD4k{
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+/* CONTENT WRAPPER HOLDER */
+.vR2lC1dN2bD1xN1vB3rD1hF1d{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+/* CONTENT WRAPPER */
+.lC3oC2kE3bD2fB1jC2qB4eF1v{
+    width: auto;
+    min-height: 1.5rem;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    background-color: transparent;
+    transition: all 0.5s ease-in-out 0.5s;
+}
+/* BSIC STYLING OF CONTENT WE CAN OVERRIGHT IT */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div{
+    width: 15rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #009b5a;
+    background-color: #d3faff;
+    margin: 0 5px;
+    position: relative;
+    z-index: 1;
+    border-radius: 5%;
+    margin: 5px;
+}
+/* FIRST CONTENT  */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div:first-child{
+    margin-left: 0;
+}
+/* LAST CONTENT */
+.lC3oC2kE3bD2fB1jC2qB4eF1v div:last-child{
+    margin-right: 0;
+}
+
+/* LEFT RIGHT NEVIGATION BUTTONS */
+.PeVNCommon{
+    position: absolute;
+    top: 45%;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #302f2fe8;
+    height: 2rem;
+    width: 2rem;
+    background-color: #ffffff8a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 3px #fff, 0 0 5px #fff;
+    font-family: sans-serif;
+}
+.hH6bF5bC7dM2dF4iB1eJ1eD4k .Previous{
+    left: 0;
+}
+.hH6bF5bC7dM2dF4iB1eJ1eD4k .Next{
+    right: 0;
+}
+/* CIRCULAR NAVIGATION BUTTONS  */
+.counter_click{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #fff;
+    height: 1.25rem;
+    margin-top: -2rem;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+.Slider_Button{
+    height: 1rem;
+    width: 1rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: #a5a5a5;
+    border-radius: 50%;
+    margin: 2px;
+    position: relative;
+    box-sizing: border-box;
+    font-size: 0.6rem;
+    font-weight: bolder;
+    color: #ffffff;
+    transition: 1s;
+    margin-top: 2.5px;
+    margin-bottom: 5px;
+}
+
+.Slider_Button_Active{
+    background: #00c785;
+    background: #16011f;
+    border: 0.1rem solid #000000;
+    color: #ffffff;
+}
 </style>
