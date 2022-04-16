@@ -1,7 +1,7 @@
 {
   "name": "vue-ai-carousel",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.5",
+  "description": "A vue3 Carousel Component",
 
   "main": "dist/VueAIcarousel.ssr.js",
   "browser": "dist/VueAIcarousel.esm.js",
@@ -52,5 +52,13 @@
   },
   "engines": {
     "node": ">=12"
-  }
+  },
+  
+  "keywords": [
+    "vueaicarousel",
+    "Vue-Ai-Carousel",
+    "VueAIcarousel",
+    "VueAiCarousel"
+  ],
+  "license": "MIT"
 }
