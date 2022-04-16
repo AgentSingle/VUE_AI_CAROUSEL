@@ -41,19 +41,16 @@ export default {
             intervalTime: this.Property.Dlay || 5000,
             Total_CNT: null,
             screenWidth: null,
-            CSL_Moving: "Moving"
+            CSL_Moving: "Moving",
         };
     },
     props:{
         /* FIRST CHECK IS THERE ANY CAROUSEL PRESENT OR NOT */
-        Property: Object
-    },
-    methods:{
-
+        Property: Object,
     },
     mounted() {
         /* ~~~~:~~~[ SELECT WRAPPER ELEMENT ]~~~~:~~~ */
-        let SWrapper = document.getElementById(this.Property.ID)      
+        let SWrapper = document.getElementById(this.Property.ID);
         let CWHolder = SWrapper.firstElementChild;
         let ContentWrapper = CWHolder.firstElementChild;
         this.Total_CNT = ContentWrapper.childElementCount;
@@ -79,7 +76,8 @@ export default {
         ContentWrapper.addEventListener("transitionend", () => {
             if (CMD == -1) {
                 ContentWrapper.appendChild(ContentWrapper.firstElementChild);
-            } else if (CMD == 1) {
+            } 
+            else if (CMD == 1) {
                 ContentWrapper.prepend(ContentWrapper.lastElementChild);
             }
             ContentWrapper.style.transition = "none";
@@ -130,7 +128,7 @@ export default {
                     );
                 }
             }
-        })
+        });
 
 
         /* 
@@ -170,7 +168,7 @@ export default {
                     InterValId = setInterval(moveCSLfirst, this.intervalTime);
                     addNevigationButton();
                 }
-            }
+            };
 
 
         /* 
@@ -191,14 +189,12 @@ export default {
                 SWrapper.appendChild(NVbtnPrevious);
 
                 NVbtnPrevious.addEventListener("click", () => {
+                    this.CSL_Moving = "";
                     if (CMD == -1) {
                         CMD = 1;
                     }
                     CWHolder.style.justifyContent = "flex-start";
                     ContentWrapper.style.transform = `translatex(${move}px)`;
-                    setTimeout(() => {
-                        CMD = -1
-                    }, this.intervalTime);
                 });
 
 
@@ -269,7 +265,7 @@ export default {
                         TranslateCards();
                         setTimeout(() => {
                             this.CSL_Moving = "Moving";
-                        }, this.intervalTime)
+                        }, 2*this.intervalTime);
                     });
                     }
                     if (totalCNT > 2) {
@@ -285,7 +281,7 @@ export default {
                 this.CSL_Moving = "";
                 let touch = e.touches[0];
                 startX = touch.pageX - SWrapper.offsetLeft;
-            },{ passive: true });;
+            },{ passive: true });
 
             /* WHEN TOUCH MOVE */ 
             SWrapper.addEventListener("touchmove", (e) => {
@@ -308,9 +304,6 @@ export default {
                         CMD = 1;
                     }
                 }
-                setTimeout(() => {
-                    this.CSL_Moving = "Moving";
-                }, this.intervalTime);
 
             },{ passive: true });
             
@@ -361,17 +354,17 @@ export default {
         */
         if(this.Total_CNT != 0){
             adjustCSL();
-        };
+        }
 
         /* ~~~~:~~~[ AFTER 200ms CHAKE CONTENT SITUATION ]~~~~:~~~ */
-        setInterval(() => {
+        const contentOBSERVER = ()=>{
             let New_Total_CNT = ContentWrapper.childElementCount
         /* CHECK CONTENT UPDATE OR IS THERE ANY NEW CONTENT ADDED */
             if(this.Total_CNT != New_Total_CNT){
                 this.Total_CNT = New_Total_CNT
                 if(this.Total_CNT != 0){
                     adjustCSL();
-                };
+                }
             }
         /* CHECK CHECK SCREEN WITH CHANGE OR NOT */
             let New_screenWidth = SWrapper.clientWidth;
@@ -379,7 +372,7 @@ export default {
                 this.screenWidth = New_screenWidth
                 if(this.Total_CNT != 0){
                     adjustCSL();
-                };
+                }
             }
         /* REMOVE LEFT & RIGHT NEVIGATION BUTTON FOR SMALL SCREEN */
             if (this.screenWidth<=420) {
@@ -388,7 +381,9 @@ export default {
                     SWrapper.removeChild(SWrapper.children[1]);
                 }
             }
-        }, 10);
+            window.requestAnimationFrame(contentOBSERVER);
+        }
+        window.requestAnimationFrame(contentOBSERVER);
 
     },
 }
@@ -396,9 +391,4 @@ export default {
 
 <style scoped>
 @import "./Carousel.css";
-.Carousel_None {
-  height: 0;
-  width: 0;
-  display: none;
-}
 </style>

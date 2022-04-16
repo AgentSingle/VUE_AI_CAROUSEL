@@ -1,13 +1,21 @@
 /* SLIDER HOLDER */
 .iP3kL1jB2xC1eH5oU3eD9bZ1h{
+    font-size: 62.5%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 5px;
-    padding-right: 5px;
 }
-
+@media (max-width: 1440px) {
+    .iP3kL1jB2xC1eH5oU3eD9bZ1h {
+        font-size: 60%;
+    }
+}
+@media (max-width: 1080px) {
+    .iP3kL1jB2xC1eH5oU3eD9bZ1h {
+        font-size: 55%;
+    }
+}
 /* SLIDER WRAPPER 
 [IT WRAP THE CONTENT ACCORDING TO REQUIREMENT ]*/
 .hH6bF5bC7dM2dF4iB1eJ1eD4k{
@@ -41,8 +49,8 @@
 }
 /* BSIC STYLING OF CONTENT WE CAN OVERRIGHT IT */
 .lC3oC2kE3bD2fB1jC2qB4eF1v div{
-    width: 20rem;
-    height: 15rem;
+    width: 15rem;
+    height: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
