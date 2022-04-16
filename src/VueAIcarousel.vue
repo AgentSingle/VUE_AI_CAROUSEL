@@ -513,7 +513,6 @@ export default {
 }
 
 .Slider_Button_Active{
-    background: #00c785;
     background: #16011f;
     border: 0.1rem solid #000000;
     color: #ffffff;

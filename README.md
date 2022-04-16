@@ -1,65 +1,128 @@
 <h1 align="center">
-  <img src='https://www.smileysapp.com/gif-emoji/waving-hi.gif' alt='emoji' width="60" height="60">
   Welcome To "Vue Advance Infinite Carousel"
 </h1>
 
-<h2 align="center">**HOW TO USE**</h2>
+<h2 align="center">🔆FETURES🔆</h2>
 
-🔆**1.** ADD PLUGIN INTO YOUR PROJECT:
-<h3 align="center">
-  It Work Like Simple Cards, When not overflow on screen
-</h3>
-<h3 align="center">
-<img src='Images/Carousel_Img_1.png' alt='emoji' width="50%" height="50%">
-</h3>
+🔆**1.** USE ANY NUMBER OF CONTENTS IN YOUR CAROUSEL NO LIMIT:
 
-🔆**2.** Download only <a href="https://github.com/AtaOta/AI_Carousel/blob/1770b944d5e3dc269efdea892a845e6a65b13cb9/Ai_Carousel/js/index.js" target="_blank">**index.js**</a> **&** <a href="https://github.com/AtaOta/AI_Carousel/blob/1770b944d5e3dc269efdea892a845e6a65b13cb9/Ai_Carousel/css/index.css" target="_blank">**index.css**</a> file, then link this two files in your **html** file. Then attach below code in your html where you want...
-```html
+🔆**2.** IT's WORK BOTH CAROUSEL ALONG SIDE CARDS ACCORDING TO THE SCREEN SIZE:
 
-<head>
-  <!-- Your Css File Link Here -->
-  <link rel="stylesheet" href="**Your File Path**/index.css">
-</head>
-<body>
-    <div class="Slider_Holder">
-       <div class="Slider_Wrapper">
-           <div class="content_Wrapper_Holder">
-               <div class="Content_Wrapper">
-                      <!-- Enter Your Card with Custome Name -->
-                   <div class="card">Eg. Card 1</div>
-                </div>
-          </div>
-      </div>
-    </div>
-  
-  <!-- Your JS File Link Here -->
-  <script src="**Your File Path**/index.js" async defer></script>
-<body>
+🔆**3.** ON RESIZE PAGE IT WILL ADJUST CONTENT CENTER ITSELF:
+
+🔆**4.** SMART COUNTER BUTTONS SUPPORT [auto increase according to content number increase]:
+
+🔆**5.** AUTO DETECT CHANGES OF DYNAMIC DATA & ADJUST ITSELF AUTOMETICALLY:
+
+🔆**6.** LEFT AND RIGHT DIRECTION CONTROL BUTTONS [NAVIGATION BUTTONS]:
+
+🔆**7.** MOUSE DOWN AND UP DILAY:
+
+🔆**8.** TOUCH SUPPORT LEFT AND RIGHT MOVEMENT:
+
+🔆**9.** CHANGE STYLE AS YOU CHOOSE:
+<h2 align="center"></h2>
+
+<h2 align="center">**HOW TO USE: "vue-ai-carousel"**</h2>
+
+☸**1.** ADD PLUGIN INTO YOUR PROJECT [latest version]:
+
+  ```
+  npm i vue-ai-carousel
+  ```
+
+☸**2.** IMPORT vue-ai-carousel INTO YOUR WORKING FILE (Eg. my_home.vue):
+
 ```
-
-<h3 align="center">
-  On Resize The Window/Screen Transfer Into Carousel
-</h3>
-<h3 align="center">
-<img src='Images/Carousel_Img_2.png' alt='emoji' width="50%" height="50%">
-</h3>
-
-<h3>☸**Style Cards**</h3>
-
-- 1. Create your custom css file then style as you want
-```html 
-<!-- Enter Your Card with Custome ClassName -->
-<div class="card **CustomClassName**">Eg. Card 1</div>
-<div class="card **CustomClassName**">Eg. Card 2</div>
-<div class="card **CustomClassName**">Eg. Card 3</div>
+import VueAIcarousel from "vue-ai-carousel"
+```
+THEN IN YOUR COMPONENT SECTION REGISTER: VueAIcarousel, as shown below::
+```
+VueAIcarousel,
+```
+OR
+```
+import { defineAsyncComponent } from 'vue';
+```
+THEN IN YOUR COMPONENT SECTION REGISTER: VueAIcarousel, as shown below::
+```
+VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarousel" */ 'vue-ai-carousel')),
 ```
 
 
-<h3 align="center">
-  We Can Add Multiple Carousel, Using Different Cards Style
-</h3>
-<h3 align="center">
-<img src='Images/Carousel_Img_3.png' alt='emoji' width="50%" height="50%">
-</h3>
+☸**3.** USE AS A COMPONENT OR COMPONENTS [WARNING: ID should be unique for each carousel]:
 
-🔆**3.** You may use **minifyed-version** size**(5kb)**.
+```
+<VueAIcarousel :Property="{ID: 'Unique_id'}">
+<!-- You can use any number of Content -->
+<div>1</div>
+<div>2</div>
+<div>3</div>
+</VueAIcarouse>
+```
+
+☸**4.** EXAMPLE PROJECT:
+THEN IN YOUR COMPONENT SECTION, write: VueAIcarousel, as shown below::
+
+```
+<template>
+    <VueAIcarousel :Property="{ID: 'One'}">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </VueAIcarousel>
+    
+    <VueAIcarousel :Property="{ID: 'Two', Dlay:1000}">
+      <div class="cards">1</div>
+      <div class="cards">2</div>
+      <div class="cards">3</div>
+      <div class="cards">4</div>
+    </VueAIcarousel>
+</template>
+
+<script>
+import VueAIcarousel from "vue-ai-carousel"
+//import { defineAsyncComponent } from 'vue';
+
+export default defineComponent({
+  name: 'MyHome',
+  components: {
+    VueAIcarousel,
+    //VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarousel" */ 'vue-ai-carousel')),
+  }
+});
+</script>
+
+<style scoped>
+.cards{
+  background: #94fc86;
+  height: 8rem;
+  width: 12rem;
+}
+</style>
+```
+<h3>☸**CHANGE DELAY TIME**☸</h3>
+
+```
+  <VueAIcarousel :Property="{ID: 'unique_id', Dlay:1000}">
+  </VueAIcarousel>
+  // Dlay:chose your delay time in miliseconds
+```
+
+<h3>☸**STYLE CHANGE**☸</h3>
+
+```
+/* TO CHANGE STYLE OF LEFT RIGHT NEVIGATION BUTTONS  (USE BELOW CLASS)*/
+.PeVNCommon{} 
+/* TO CHANGE POSTION OF COUNTER BUTTONS  (USE BELOW CLASS)*/
+.counter_click{}
+/* TO CHANGE STYLE OF COUNTER BUTTONS  (USE BELOW CLASS)*/
+.Slider_Button{}
+/* TO CHANGE STYLE OF COUNTER ACTIVE BUTTON  (USE BELOW CLASS)*/
+.Slider_Button_Active{}
+```
+
+🔆 **bundle-size** size**(6kb)**.
+🔆 **unpack-size** size**(65.3 kB)**.
