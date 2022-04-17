@@ -61,7 +61,11 @@ VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarous
 </VueAIcarouse>
 ```
 
+<<<<<<< HEAD
 <h3>☸**EXAMPLE PROJECTE**☸</h3>
+=======
+<h3>☸**EXAMPLE PROJECT**☸</h3>
+>>>>>>> a0a232935ec5de2bdc38cc0f794edc64444bc888
 THEN IN YOUR COMPONENT SECTION, write: VueAIcarousel, as shown below::
 
 ```
