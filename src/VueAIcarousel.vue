@@ -177,6 +177,7 @@ export default {
                 move = CNTWidth + gap_between_CNT
                 if (this.CSL_Moving == "Moving") {
                     ContentWrapper.style.transform = `translatex(${-move}px)`;
+                    CMD = -1
                 }
             };
             const callMoveCSLfirst = () =>{

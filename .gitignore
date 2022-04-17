@@ -1,11 +1,11 @@
 .DS_Store
 node_modules/
 /dist/
+README.md
 
 # local env files
 .env.local
 .env.*.local
-README.md
 
 # Log files
 npm-debug.log*
