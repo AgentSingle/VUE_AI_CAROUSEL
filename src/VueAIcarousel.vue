@@ -474,15 +474,15 @@ export default {
 /* LEFT RIGHT NEVIGATION BUTTONS */
 .commonStyle{
     position: absolute;
-    top: 45%;
-    font-size: 2.5rem;
-    font-weight: bolder;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 .PeVNCommon{
+    top: 45%;
+    font-size: 2.5rem;
+    font-weight: bolder;
     color: #302f2fe8;
     height: 2rem;
     width: 2rem;
@@ -503,10 +503,10 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    height: 1.25rem;
     cursor: pointer;
 }
 .countDefaultpos{
+    height: 1.25rem;
     margin-top: -1.7rem;
     padding-bottom: 0.5rem;
 }
