@@ -2,26 +2,9 @@
   Welcome To "Vue Advance Infinite Carousel"
 </h1>
 
-<h2 align="center">🔆FETURES🔆</h2>
-
-🔆**1.** USE ANY NUMBER OF CONTENTS IN YOUR CAROUSEL NO LIMIT:
-
-🔆**2.** IT's WORK BOTH CAROUSEL ALONG SIDE CARDS ACCORDING TO THE SCREEN SIZE:
-
-🔆**3.** ON RESIZE PAGE IT WILL ADJUST CONTENT CENTER ITSELF:
-
-🔆**4.** SMART COUNTER BUTTONS SUPPORT [auto increase according to content number increase]:
-
-🔆**5.** AUTO DETECT CHANGES OF DYNAMIC DATA & ADJUST ITSELF AUTOMETICALLY:
-
-🔆**6.** LEFT AND RIGHT DIRECTION CONTROL BUTTONS [NAVIGATION BUTTONS]:
-
-🔆**7.** MOUSE DOWN AND UP DILAY:
-
-🔆**8.** TOUCH SUPPORT LEFT AND RIGHT MOVEMENT:
-
-🔆**9.** CHANGE STYLE AS YOU CHOOSE:
-<h2 align="center"></h2>
+<h2 align="center">
+  🔆<a href="https://github.com/AtaOta/VUE_AI_CAROUSEL/tree/master#fetures" target="_blank">**FETURES**</a>🔆
+</h2>
 
 <h2 align="center">**HOW TO USE: "vue-ai-carousel"**</h2>
 
@@ -54,114 +37,27 @@ VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarous
 
 ```
 <VueAIcarousel :Property="{ID: 'Unique_id'}">
-<!-- You can use any number of Content -->
+<!-- You can use any number of Content [ID is important] -->
 <div>1</div>
 <div>2</div>
 <div>3</div>
 </VueAIcarouse>
 ```
 
-☸**4.** EXAMPLE PROJECT:
-THEN IN YOUR COMPONENT SECTION, write: VueAIcarousel, as shown below::
+<h3>☸**AN EXAMPLE PROJECT**☸</h3>
+<h2>
+  <a href="https://github.com/AtaOta/VUE_AI_CAROUSEL/blob/master/.github/README.md#example-project" target="_blank">**EXAMPLE PROJECT**</a>
+</h2>
 
-```
-<template>
-    <VueAIcarousel :Property="{ID: 'One'}">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-    </VueAIcarousel>
-    
-    <VueAIcarousel :Property="{ID: 'Two', Dlay:1000}">
-      <div class="cards">1</div>
-      <div class="cards">2</div>
-      <div class="cards">3</div>
-      <div class="cards">4</div>
-    </VueAIcarousel>
-    
-    <VueAIcarousel 
-      :Property="{
-        ID: 'ShouldBe_Unique', 
-        NavBtn: 'naveBtnStyle',
-        CountPos: 'CounterPosition',
-        CounterStyle: 'counterNewStyle',
-        CounterActiveStyle: 'CAnewStyle',
-        }"
-    >
-      <div class="cards">1</div>
-      <div class="cards">2</div>
-      <div class="cards">3</div>
-      <div class="cards">4</div>
-    </VueAIcarousel>
-</template>
+<h3>☸**TO CHANGE DELAY TIME**☸</h3>
+<h2>
+  <a href="https://github.com/AtaOta/VUE_AI_CAROUSEL/blob/master/.github/README.md#change-delay-time" target="_blank">**CHANGE DELAY TIME**</a>
+</h2>
 
-<script>
-import VueAIcarousel from "vue-ai-carousel"
-//import { defineAsyncComponent } from 'vue';
+<h3>☸**TO STYLE CHANGE**☸</h3>
+<h2>
+  <a href="https://github.com/AtaOta/VUE_AI_CAROUSEL/blob/master/.github/README.md#example-project" target="_blank">**CHANGE STYLE**</a>
+</h2>
 
-export default defineComponent({
-  name: 'MyHome',
-  components: {
-    VueAIcarousel,
-    //VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarousel" */ 'vue-ai-carousel')),
-  }
-});
-</script>
-
-<style scoped>
-.cards{
-  background: #94fc86;
-  height: 8rem;
-  width: 12rem;
-}
-</style>
-
-<style >
-.naveBtnStyle{
-  height: 50px;
-  width: 50px;
-  background: orange;
-}
-.CounterPosition{
-  margin-top: -30px;
-}
-.counterNewStyle{
-  background: red;
-}
-.CAnewStyle{
-  background: purple;
-}
-</style>
-```
-<h3>☸**CHANGE DELAY TIME**☸</h3>
-
-```
-  <VueAIcarousel :Property="{ID: 'unique_id', Dlay:1000}">
-  </VueAIcarousel>
-  // Dlay:chose your delay time in miliseconds
-```
-
-<h3>☸**STYLE CHANGE**☸</h3>
-
-```
-<VueAIcarousel 
-  :Property="{
-    ID: 'ShouldBe_Unique', 
-    NavBtn: 'naveBtnStyle',   <!--  TO CHANGE STYLE OF LEFT RIGHT NEVIGATION BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
-    CountPos: 'CounterPosition',  <!--  TO CHANGE POSTION OF COUNTER BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
-    CounterStyle: 'counterNewStyle', <!--  TO CHANGE POSTION OF COUNTER BUTTONS [ GIVE A UNIQUECALSS NAME ] -->
-    CounterActiveStyle: 'CAnewStyle', <!--  TO CHANGE STYLE OF COUNTER ACTIVE BUTTON [ GIVE A UNIQUECALSS NAME ] -->
-    }"
->
-
-[** Create a new style Section & don't use scoped **]
-<style >
-/* YOUR STYLE GOSE HERE */
-/* WE ALREADY GIVE AN EXAMPLE ON THE ABOVE */
-</style>
-```
-
-🔆 **bundle-size** size**(6kb)**.
-🔆 **unpack-size** size**(65.3 kB)**.
+🔆 **bundle-size** size**(12kb)**.
+🔆 **unpack-size** size**(65 kB)**.
