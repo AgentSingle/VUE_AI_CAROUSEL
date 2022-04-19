@@ -8,4 +8,4 @@
 | 1.1.0.x   | :x:                |
 
 ## Reporting a Vulnerability
-Email: ataota.club@gmail.com
+Email: ataota.india@gmail.com.
