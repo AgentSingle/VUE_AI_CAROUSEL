@@ -58,7 +58,7 @@ VueAIcarousel: defineAsyncComponent(() =>import(/*webpackChunkName: "VueAIcarous
 <div>1</div>
 <div>2</div>
 <div>3</div>
-</VueAIcarouse>
+</VueAIcarousel>
 ```
 
 <h3>☸**EXAMPLE PROJECTE**☸</h3>
