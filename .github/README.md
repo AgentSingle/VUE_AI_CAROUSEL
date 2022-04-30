@@ -4,6 +4,10 @@
 
 <h2 align="center">🔆FETURES🔆</h2>
 
+<h3>
+  <a href="https://youtu.be/xh5a5oORHJc">**YouTube Tutorial**</a>
+</h3>
+
 🔆**1.** USE ANY NUMBER OF CONTENTS IN YOUR CAROUSEL NO LIMIT:
 
 🔆**2.** IT's WORK BOTH CAROUSEL ALONG SIDE CARDS ACCORDING TO THE SCREEN SIZE:
